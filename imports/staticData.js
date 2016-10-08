@@ -4,7 +4,7 @@ export const YELLOW = 'yellow';
 export const GREEN = 'green';
 export const BLUE = 'blue';
 export const PURPLE = 'purple';
-
+export const BLACK = 'black';
 
 export const area = {
     name: 'The Prow',
@@ -48,7 +48,7 @@ export const area = {
         {
             id: '04jtweriong09',
             difficulty: 'V7+',
-            color: 'Black',
+            color: BLACK,
             count: 4,
         },
     ]

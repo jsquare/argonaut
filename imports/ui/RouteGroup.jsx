@@ -4,7 +4,7 @@ import { createContainer } from 'meteor/react-meteor-data';
 import classnames from 'classnames';
 
 import { ClimbGroups } from '../api/climbGroups.js';
-import {RED, ORANGE, YELLOW, GREEN, BLUE, PURPLE} from '../staticData.js'
+import {RED, ORANGE, YELLOW, GREEN, BLUE, PURPLE, BLACK} from '../staticData.js'
 
 import styles from './RouteGroup.scss'
 
@@ -16,6 +16,7 @@ const colorStyleMapping = {
     [GREEN]: styles.green,
     [BLUE]: styles.blue,
     [PURPLE]: styles.purple,
+    [BLACK]: styles.black,
 }
 
 export default class RouteGroup extends Component {
@@ -29,14 +30,17 @@ export default class RouteGroup extends Component {
     const {difficulty, color, count, climbedCount} = this.props;
     return (
       <li className={classnames(styles.routeGroup, colorStyleMapping[color])}>
-        <div>
-            <button onClick={this.removeClimb.bind(this)} className={styles.decrement}>-</button>
-            <div class={styles.routeGroupContent}>
-                <div>{difficulty}</div>
-                <div>{climbedCount} climbed / {count} total</div>
+        <button onClick={this.removeClimb.bind(this)} className={styles.button}>-</button>
+        <div className={styles.routeGroupContent}>
+            <div className={styles.difficulty}>{difficulty} </div>
+            <div className={styles.climbCount}>
+                <span className={styles.KPI}>{climbedCount}</span>
+                <span className={styles.extraText}> sent</span>
+                <span className={styles.KPI}> / {count}</span>
+                <span className={styles.extraText}> total</span>
             </div>
-            <button onClick={this.addClimb.bind(this)} className={styles.increment}>+</button>
         </div>
+        <button onClick={this.addClimb.bind(this)} className={styles.button}>+</button>
       </li>
     );
   }

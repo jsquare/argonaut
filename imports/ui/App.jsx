@@ -61,10 +61,7 @@ class App extends Component {
     return routeGroups.map((routeGroup) => {
       return <RouteGroup
         key={routeGroup.id}
-        routeGroupId={routeGroup.id}
-        difficulty={routeGroup.difficulty}
-        color={routeGroup.color}
-        count={routeGroup.count}
+        routeGroup={routeGroup}
       />
     })
   }

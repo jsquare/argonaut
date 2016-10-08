@@ -4,8 +4,10 @@ import { Meteor } from 'meteor/meteor';
 import { createContainer } from 'meteor/react-meteor-data';
 
 import { Tasks } from '../api/tasks.js';
+import { routeGroups } from '../staticData.js';
 
 import Task from './Task.jsx';
+import RouteGroup from './RouteGroup.jsx';
 import AccountsUIWrapper from './AccountsUIWrapper.jsx';
 
 // App component - represents the whole app
@@ -55,6 +57,18 @@ class App extends Component {
     });
   }
 
+  renderRouteGroups() {
+    return routeGroups.map((routeGroup) => {
+      return <RouteGroup
+        key={routeGroup.id}
+        routeGroupId={routeGroup.id}
+        difficulty={routeGroup.difficulty}
+        color={routeGroup.color}
+        count={routeGroup.count}
+      />
+    })
+  }
+
   render() {
     return (
       <div className="container">
@@ -86,6 +100,9 @@ class App extends Component {
 
         <ul>
           {this.renderTasks()}
+        </ul>
+        <ul>
+          {this.renderRouteGroups()}
         </ul>
       </div>
     );

@@ -13,8 +13,9 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-  'climbGroups.addClimb'(routeGroupId) {
+  'climbGroups.addClimb'(routeGroupId, maxClimbs) {
     check(routeGroupId, String);
+    check(maxClimbs, Number);
 
     // Make sure the user is logged in before inserting a climbGroup
     if (! this.userId) {
@@ -31,9 +32,8 @@ Meteor.methods({
     if (climbGroup) {
       ClimbGroups.update(
         climbGroup._id,
-        {
-          $inc: {count: 1},
-        }
+        // Would like to use $max and $inc here, but $max isn't available in MiniMongo
+        {$set: {count: Math.min(climbGroup.count + 1, maxClimbs)}}
       );
     } else {
       ClimbGroups.insert({
@@ -61,9 +61,8 @@ Meteor.methods({
     if (climbGroup) {
       ClimbGroups.update(
         climbGroup._id,
-        {
-          $inc: {count: -1},
-        }
+        // Would like to use $min and $inc here, but $min isn't available in MiniMongo
+        {$set: {count: Math.max(climbGroup.count - 1, 0)}}
       );
     };
   },

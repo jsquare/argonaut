@@ -8,7 +8,7 @@ import { ClimbGroups } from '../api/climbGroups.js';
 
 export default class RouteGroup extends Component {
   addClimb() {
-    Meteor.call('climbGroups.addClimb', this.props.routeGroupId);
+    Meteor.call('climbGroups.addClimb', this.props.routeGroupId, this.props.count);
   }
   removeClimb() {
     Meteor.call('climbGroups.removeClimb', this.props.routeGroupId);

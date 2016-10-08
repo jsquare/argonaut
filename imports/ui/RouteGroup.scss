@@ -1,0 +1,51 @@
+@import '../scss/colors';
+
+.red {
+    background: $red
+}
+
+.orange {
+    background: $orange
+}
+
+.yellow {
+    background: $yellow
+}
+
+.green {
+    background: $green
+}
+
+.blue {
+    background: $blue
+}
+
+.purple {
+    background: $purple
+}
+
+.routeGroup {
+  position: relative;
+  list-style-type: none;
+  height: 50px;
+  border-bottom: #eee solid 1px;
+  text-align: center;
+}
+
+.routeGroupContent {
+}
+
+@mixin button {
+    height: 100%;
+    width: 50px;
+}
+
+.increment {
+    @include button;
+    float: right
+}
+
+.decrement {
+    @include button;
+    float: left
+}

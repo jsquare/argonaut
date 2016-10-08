@@ -1,14 +1,16 @@
-import React, { Component, PropTypes } from 'react';
+import React, {Component, PropTypes} from 'react';
 import ReactDOM from 'react-dom';
-import { Meteor } from 'meteor/meteor';
-import { createContainer } from 'meteor/react-meteor-data';
+import {Meteor} from 'meteor/meteor';
+import {createContainer} from 'meteor/react-meteor-data';
 
-import { Tasks } from '../api/tasks.js';
-import { routeGroups } from '../staticData.js';
+import {Tasks} from '../api/tasks.js';
+import {routeGroups} from '../staticData.js';
 
 import Task from './Task.jsx';
 import RouteGroup from './RouteGroup.jsx';
 import AccountsUIWrapper from './AccountsUIWrapper.jsx';
+
+import styles from './App.scss';
 
 // App component - represents the whole app
 class App extends Component {
@@ -32,77 +34,36 @@ class App extends Component {
     ReactDOM.findDOMNode(this.refs.textInput).value = '';
   }
 
-  toggleHideCompleted() {
-    this.setState({
-      hideCompleted: !this.state.hideCompleted,
-    });
-  }
-
-  renderTasks() {
-    let filteredTasks = this.props.tasks;
-    if (this.state.hideCompleted) {
-      filteredTasks = filteredTasks.filter(task => !task.checked);
-    }
-    return filteredTasks.map((task) => {
-      const currentUserId = this.props.currentUser && this.props.currentUser._id;
-      const showPrivateButton = task.owner === currentUserId;
-
+  renderRouteGroups() {
+    return routeGroups.map(routeGroup => {
       return (
-        <Task
-          key={task._id}
-          task={task}
-          showPrivateButton={showPrivateButton}
+        <RouteGroup
+          key={routeGroup.id}
+          routeGroup={routeGroup}
         />
       );
     });
-  }
-
-  renderRouteGroups() {
-    return routeGroups.map((routeGroup) => {
-      return <RouteGroup
-        key={routeGroup.id}
-        routeGroup={routeGroup}
-      />
-    })
   }
 
   render() {
     return (
       <div className="container">
         <header>
-          <h1>Todo List ({this.props.incompleteCount})</h1>
-
-          <label className="hide-completed">
-            <input
-              type="checkbox"
-              readOnly
-              checked={this.state.hideCompleted}
-              onClick={this.toggleHideCompleted.bind(this)}
-            />
-            Hide Completed Tasks
-          </label>
-
+          <h1>The Prow</h1>
           <AccountsUIWrapper />
-
-          { this.props.currentUser ?
-            <form className="new-task" onSubmit={this.handleSubmit.bind(this)} >
-              <input
-                type="text"
-                ref="textInput"
-                placeholder="Type to add new tasks"
-              />
-            </form> : ''
-          }
         </header>
 
-        <ul>
-          {this.renderTasks()}
-        </ul>
-        <ul>
+        <ul className={styles.ul}>
           {this.renderRouteGroups()}
         </ul>
       </div>
     );
+  }
+
+  toggleHideCompleted() {
+    this.setState({
+      hideCompleted: !this.state.hideCompleted,
+    });
   }
 }
 
@@ -116,8 +77,8 @@ export default createContainer(() => {
   Meteor.subscribe('tasks');
 
   return {
-    tasks: Tasks.find({}, { sort: { createdAt: -1 } }).fetch(),
-    incompleteCount: Tasks.find({ checked: { $ne: true } }).count(),
+    tasks: Tasks.find({}, {sort: {createdAt: -1}}).fetch(),
+    incompleteCount: Tasks.find({checked: {$ne: true}}).count(),
     currentUser: Meteor.user(),
   };
 }, App);

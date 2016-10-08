@@ -4,7 +4,19 @@ import { createContainer } from 'meteor/react-meteor-data';
 import classnames from 'classnames';
 
 import { ClimbGroups } from '../api/climbGroups.js';
+import {RED, ORANGE, YELLOW, GREEN, BLUE, PURPLE} from '../staticData.js'
 
+import styles from './RouteGroup.scss'
+
+
+const colorStyleMapping = {
+    [RED]: styles.red,
+    [ORANGE]: styles.orange,
+    [YELLOW]: styles.yellow,
+    [GREEN]: styles.green,
+    [BLUE]: styles.blue,
+    [PURPLE]: styles.purple,
+}
 
 export default class RouteGroup extends Component {
   addClimb() {
@@ -16,12 +28,15 @@ export default class RouteGroup extends Component {
   render() {
     const {difficulty, color, count, climbedCount} = this.props;
     return (
-      <li>
-        <span>{difficulty} - </span>
-        <span>{color} - </span>
-        <span>{climbedCount} climbed / {count} total</span>
-        <button onClick={this.addClimb.bind(this)}>+</button>
-        <button onClick={this.removeClimb.bind(this)}>-</button>
+      <li className={classnames(styles.routeGroup, colorStyleMapping[color])}>
+        <div>
+            <button onClick={this.removeClimb.bind(this)} className={styles.decrement}>-</button>
+            <div class={styles.routeGroupContent}>
+                <div>{difficulty}</div>
+                <div>{climbedCount} climbed / {count} total</div>
+            </div>
+            <button onClick={this.addClimb.bind(this)} className={styles.increment}>+</button>
+        </div>
       </li>
     );
   }
@@ -39,7 +54,7 @@ RouteGroup.propTypes = {
 
 export default createContainer(({routeGroup}) => {
   Meteor.subscribe('climbGroups');
-  
+
   const {difficulty, color, count, id: routeGroupId} = routeGroup;
 
   const existingRouteGroup = ClimbGroups.findOne(

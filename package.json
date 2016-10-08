@@ -10,5 +10,12 @@
     "react": "^15.3.2",
     "react-addons-pure-render-mixin": "^15.1.0",
     "react-dom": "^15.3.2"
+  },
+  "devDependencies": {
+    "node-sass": "^3.10.1"
+  },
+  "cssModules": {
+    "ignorePaths": ["node_modules"],
+    "extensions": ["scss"]
   }
 }

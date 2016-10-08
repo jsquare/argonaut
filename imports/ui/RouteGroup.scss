@@ -28,6 +28,12 @@
     background: $black
 }
 
+.black, .purple {
+    .climbCount {
+        text-shadow: 0 0px 100px white;
+    }
+}
+
 $grid-unit: 100px;
 
 .routeGroup {

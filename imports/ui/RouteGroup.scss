@@ -53,13 +53,16 @@ button {
     height: 100%;
     width: $grid-unit;
     display: inline-block;
-    background-color: inherit;
+    background-color: transparent;
     border: none;
     border-left: 2px solid white;
     border-right: 2px solid white;
     font-size: 80px;
     color: white;
     opacity: .7;
+    /* Put buttons on top of difficulty ratings */
+    position: relative;
+    z-index: 2;
 }
 
 .difficulty {

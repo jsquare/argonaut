@@ -8,7 +8,7 @@ if (Meteor.isServer) {
   // This code only runs on the server
   // Only publish climbGroups that are public or belong to the current user
   Meteor.publish('climbGroups', function climbGroupsPublication() {
-    return ClimbGroups.find({ private: { $ne: true } });
+    return ClimbGroups.find({climber: this.userId});
   });
 }
 

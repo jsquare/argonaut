@@ -9,7 +9,9 @@ Meteor.startup(() => {
 
     // Insert sample data if the areas collection is empty
     // Note: Assets exists even though it's not imported (https://docs.meteor.com/api/assets.html#Assets-getText)
-    JSON.parse(Assets.getText('areas.json')).areas.forEach(area => {
+    JSON.parse(
+        Assets.getText('areas.json') // eslint-disable-line no-undef
+    ).areas.forEach(area => {
         Areas.insert(area);
     });
 });

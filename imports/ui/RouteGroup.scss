@@ -41,28 +41,28 @@ $grid-unit: 100px;
   list-style-type: none;
   height: $grid-unit;
   border-bottom: #eee solid 1px;
+
+  button {
+      height: 100%;
+      width: $grid-unit;
+      display: inline-block;
+      background-color: transparent;
+      border: none;
+      border-left: 2px solid white;
+      border-right: 2px solid white;
+      font-size: 80px;
+      color: white;
+      opacity: .7;
+      /* Put buttons on top of difficulty ratings */
+      position: relative;
+      z-index: 2;
+  }
 }
 
 .routeGroupContent {
     display: inline-block;
     width: calc(100% - (2 * #{$grid-unit}));
     text-align: center;
-}
-
-button {
-    height: 100%;
-    width: $grid-unit;
-    display: inline-block;
-    background-color: transparent;
-    border: none;
-    border-left: 2px solid white;
-    border-right: 2px solid white;
-    font-size: 80px;
-    color: white;
-    opacity: .7;
-    /* Put buttons on top of difficulty ratings */
-    position: relative;
-    z-index: 2;
 }
 
 .difficulty {

@@ -7,6 +7,7 @@ import {Areas} from '../api/areas.js';
 
 import RouteGroup from './RouteGroup.jsx';
 import AccountsUIWrapper from './AccountsUIWrapper.jsx';
+import AreasMenu from './AreasMenu.jsx';
 
 import styles from './AreaPage.scss';
 
@@ -32,7 +33,7 @@ class AreaPage extends Component {
         return (
             <div className="container">
                 <header>
-                    <h1>{this.props.area && this.props.area.name}</h1>
+                    <AreasMenu title={this.props.area ? this.props.area.name : 'loading...'} />
                     <AccountsUIWrapper />
                 </header>
 

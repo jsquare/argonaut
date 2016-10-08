@@ -87,6 +87,11 @@ button {
     font-weight: 600;
 }
 
+@media screen and (max-width: 450px) {
+    .extraText {
+        display: none;
+    }
+}
 .extraText {
     font-size: 14px;
     text-transform: uppercase;

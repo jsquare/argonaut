@@ -1,0 +1,56 @@
+{
+  "areas": [
+    {
+        "_id": "1",
+        "name": "The Prow",
+        "routeGroups": [
+            {
+                "id": "abcd",
+                "difficulty": "V1-V3",
+                "color": "yellow",
+                "count": 4
+            },
+            {
+                "id": "abcadf",
+                "difficulty": "V2-V4",
+                "color": "green",
+                "count": 4
+            },
+            {
+                "id": "92noig",
+                "difficulty": "V3-V5",
+                "color": "red",
+                "count": 4
+            },
+            {
+                "id": "awen0f9ewn",
+                "difficulty": "V4-V6",
+                "color": "blue",
+                "count": 4
+            },
+            {
+                "id": "aofwbe",
+                "difficulty": "V5-V7",
+                "color": "orange",
+                "count": 3
+            },
+            {
+                "id": "q90rq0no",
+                "difficulty": "V6-V8",
+                "color": "purple",
+                "count": 4
+            },
+            {
+                "id": "04jtweriong09",
+                "difficulty": "V7+",
+                "color": "black",
+                "count": 4
+            }
+        ]
+    },
+    { "_id": "2", "name": "FS1" },
+    { "_id": "3", "name": "South Slab" },
+    { "_id": "4", "name": "North Slab" },
+    { "_id": "5", "name": "South Boulder" }
+  ]
+}

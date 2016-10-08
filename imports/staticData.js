@@ -6,7 +6,14 @@ export const BLUE = 'blue';
 export const PURPLE = 'purple';
 export const BLACK = 'black';
 
+export const areas = [
+    'prow',
+    'fs1',
+    'southslab',
+];
+
 export const area = {
+    id: 'prow',
     name: 'The Prow',
     routeGroups: [
         {
@@ -51,7 +58,7 @@ export const area = {
             color: BLACK,
             count: 4,
         },
-    ]
+    ],
 };
 
 export const routeGroups = area.routeGroups;

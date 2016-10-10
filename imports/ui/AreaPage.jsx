@@ -2,22 +2,14 @@ import React, {Component, PropTypes} from 'react';
 import {Meteor} from 'meteor/meteor';
 import {createContainer} from 'meteor/react-meteor-data';
 
-// import {routeGroups} from '../staticData.js';
 import {Areas} from '../api/areas.js';
 
+import {AccountsUIWrapper, AppBar, AuthedContent, IconLink, Page, Title} from './components/index.jsx';
 import RouteGroup from './RouteGroup.jsx';
-import AccountsUIWrapper from './AccountsUIWrapper.jsx';
-import AreasMenu from './AreasMenu.jsx';
 
 import styles from './AreaPage.scss';
 
 class AreaPage extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {};
-    }
-
     renderRouteGroups(routeGroups) {
         return routeGroups.map(routeGroup => {
             return (
@@ -31,23 +23,26 @@ class AreaPage extends Component {
 
     render() {
         return (
-            <div className="container">
-                <header>
-                    <AreasMenu title={this.props.area ? this.props.area.name : 'loading...'} />
+            <Page>
+                <AppBar>
+                    <IconLink to="/" icon="arrow_back" />
+                    <Title title={this.props.area ? this.props.area.name : 'loading...'} />
                     <AccountsUIWrapper />
-                </header>
-
-                <ul className={styles.ul}>
-                    {this.props.area && this.props.area.routeGroups && this.renderRouteGroups(this.props.area.routeGroups)}
-                </ul>
-            </div>
+                </AppBar>
+                <AuthedContent>
+                    <div className="container">
+                        <ul className={styles.ul}>
+                            {this.props.area && this.props.area.routeGroups && this.renderRouteGroups(this.props.area.routeGroups)}
+                        </ul>
+                    </div>
+                </AuthedContent>
+            </Page>
         );
     }
 }
 
 AreaPage.propTypes = {
     area: PropTypes.object,
-    currentUser: PropTypes.object,
 };
 
 export default createContainer(props => {
@@ -55,6 +50,5 @@ export default createContainer(props => {
 
     return {
         area: Areas.findOne(props.params.areaId),
-        currentUser: Meteor.user(),
     };
 }, AreaPage);

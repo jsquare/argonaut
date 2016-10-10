@@ -1,0 +1,6 @@
+@import '../../scss/text';
+@import '../../scss/colors';
+
+.title {
+    @include text--title;
+}

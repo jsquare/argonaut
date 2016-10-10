@@ -1,36 +1,22 @@
 @import '../scss/colors';
 
-.red {
-    background: $red
-}
 
-.orange {
-    background: $orange
-}
+$colors: (
+  red: $red,
+  orange: $orange,
+  yellow: $yellow,
+  green: $green,
+  blue: $blue,
+  purple: $purple,
+  black: $black
+);
 
-.yellow {
-    background: $yellow
-}
-
-.green {
-    background: $green
-}
-
-.blue {
-    background: $blue
-}
-
-.purple {
-    background: $purple
-}
-
-.black {
-    background: $black
-}
-
-.black, .purple {
-    .climbCount {
-        text-shadow: 0 0px 100px white;
+@each $color, $value in $colors {
+    .#{$color} {
+        background: $value;
+    }
+    .#{$color}--light {
+        background: transparentize($value, 0.5);
     }
 }
 

@@ -46,7 +46,6 @@ class AreaPage extends Component {
 AreaPage.propTypes = {
     area: PropTypes.object,
     routeGroups: PropTypes.array,
-    isResetPage: PropTypes.Boolean,
 };
 
 

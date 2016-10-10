@@ -1,7 +1,9 @@
 import '../imports/api/areas.js';
 import '../imports/api/climbGroups.js';
+import '../imports/api/settings.js';
 import {Meteor} from 'meteor/meteor';
 import {Areas} from '../imports/api/areas';
+import {Settings, RouteGroups} from '../imports/api/settings';
 
 const defaultRouteGroups = [
     {
@@ -45,28 +47,38 @@ function generateUUID() {
     return uuid;
 }
 
-function generateDefaultRouteGroups() {
-    return defaultRouteGroups.map(routeGroup => {
-        routeGroup.count = 0;
-        routeGroup.id = generateUUID();
-
-        return routeGroup;
-    });
-}
-
 
 Meteor.startup(() => {
-    // Empty collection
+    // Empty collections
     Areas.remove({});
+    Settings.remove({});
+    RouteGroups.remove({});
 
-    // Insert sample data if the areas collection is empty
     // Note: Assets exists even though it's not imported (https://docs.meteor.com/api/assets.html#Assets-getText)
-    JSON.parse(
+    const areas = JSON.parse(
         Assets.getText('areas.json') // eslint-disable-line no-undef
-    ).areas.forEach(area => {
-        if (!area.routeGroups) {
-            area.routeGroups = generateDefaultRouteGroups();
-        }
-        Areas.insert(area);
+    ).areas;
+
+    areas.forEach(area => {
+        Areas.insert({
+            name: area.name,
+            _id: area.slug,
+        });
+    });
+
+    // Generate some random initial data for now
+    areas.forEach(area => {
+        const settingId = Settings.insert({
+            area: area.slug,
+            setDate: new Date(),
+        });
+        defaultRouteGroups.forEach(routeGroup => (
+            RouteGroups.insert({
+                color: routeGroup.color,
+                difficulty: routeGroup.difficulty,
+                count: Math.floor((Math.random() * 5) + 1),
+                setting: settingId,
+            })
+        ));
     });
 });

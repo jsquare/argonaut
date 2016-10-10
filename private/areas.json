@@ -1,12 +1,13 @@
 {
   "areas": [
-    {"_id": "2", "name": "North Wall"},
-    {"_id": "3", "name": "Double roof"},
-    {"_id": "4", "name": "East Wall"},
-    {"_id": "5", "name": "North Slab"},
+    {"_id": "2", "name": "North Wall", "slug": "northwall"},
+    {"_id": "3", "name": "Double roof", "slug": "doubleroof"},
+    {"_id": "4", "name": "East Wall", "slug": "eastwall"},
+    {"_id": "5", "name": "North Slab", "slug": "northslab"},
     {
         "_id": "6",
         "name": "The Prow",
+        "slug": "prow",
         "polygon": "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
         "routeGroups": [
             {
@@ -53,12 +54,12 @@
             }
         ]
     },
-    {"_id": "7", "name": "South Boulder"},
-    {"_id": "8", "name": "South Corner"},
-    {"_id": "9", "name": "South Slab"},
-    {"_id": "10", "name": "FS1"},
-    {"_id": "11", "name": "Roof/Cave/Arete"},
-    {"_id": "12", "name": "Downstairs - Wave"},
-    {"_id": "13", "name": "Downstairs - Alcove"}
+    {"_id": "7", "name": "South Boulder", "slug": "southboulder"},
+    {"_id": "8", "name": "South Corner", "slug": "southcorner"},
+    {"_id": "9", "name": "South Slab", "slug": "southslab"},
+    {"_id": "10", "name": "FS1", "slug": "fs1"},
+    {"_id": "11", "name": "Roof/Cave/Arete", "slug": "roof"},
+    {"_id": "12", "name": "Downstairs - Wave", "slug": "wave"},
+    {"_id": "13", "name": "Downstairs - Alcove", "slug": "alcove"}
   ]
 }

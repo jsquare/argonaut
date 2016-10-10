@@ -53,7 +53,7 @@ export default createContainer(
     ({routeGroup}) => {
         Meteor.subscribe('climbGroups');
 
-        const {difficulty, color, count, id: routeGroupId} = routeGroup;
+        const {difficulty, color, count, _id: routeGroupId} = routeGroup;
 
         const existingRouteGroup = ClimbGroups.findOne(
             {

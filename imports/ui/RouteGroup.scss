@@ -1,4 +1,5 @@
 @import '../scss/colors';
+@import '../scss/grid';
 
 
 $colors: (
@@ -20,7 +21,7 @@ $colors: (
     }
 }
 
-$grid-unit: 100px;
+// $grid-unit: 100px;
 
 .routeGroup {
   position: relative;

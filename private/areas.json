@@ -1,7 +1,11 @@
 {
   "areas": [
+    {"_id": "2", "name": "North Wall"},
+    {"_id": "3", "name": "Double roof"},
+    {"_id": "4", "name": "East Wall"},
+    {"_id": "5", "name": "North Slab"},
     {
-        "_id": "1",
+        "_id": "6",
         "name": "The Prow",
         "polygon": "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
         "routeGroups": [
@@ -49,9 +53,12 @@
             }
         ]
     },
-    { "_id": "2", "name": "FS1" },
-    { "_id": "3", "name": "South Slab" },
-    { "_id": "4", "name": "North Slab" },
-    { "_id": "5", "name": "South Boulder" }
+    {"_id": "7", "name": "South Boulder"},
+    {"_id": "8", "name": "South Corner"},
+    {"_id": "9", "name": "South Slab"},
+    {"_id": "10", "name": "FS1"},
+    {"_id": "11", "name": "Roof/Cave/Arete"},
+    {"_id": "12", "name": "Downstairs - Wave"},
+    {"_id": "13", "name": "Downstairs - Alcove"}
   ]
 }

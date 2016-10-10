@@ -1,8 +1,12 @@
+@import '../scss/grid';
+
 .areaItem {
     border-bottom: 1px solid black;
     background-color: white;
     font-size: 40px;
     width: 100%;
+    height: $grid-unit * 0.75;
+
     a {
         display: block;
         width: 100%;

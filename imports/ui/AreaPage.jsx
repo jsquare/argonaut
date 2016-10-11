@@ -6,7 +6,7 @@ import {Areas} from '../api/areas.js';
 import {Settings, RouteGroups} from '../api/settings.js';
 
 import {AccountsUIWrapper, AppBar, AuthedContent, IconLink, Page, Title} from './components/index.jsx';
-import RouteGroup from './RouteGroup.jsx';
+import PersonalRouteGroup from './PersonalRouteGroup.jsx';
 
 import styles from './AreaPage.scss';
 
@@ -14,7 +14,7 @@ class AreaPage extends Component {
     renderRouteGroups(routeGroups) {
         return routeGroups.map(routeGroup => {
             return (
-                <RouteGroup
+                <PersonalRouteGroup
                   key={routeGroup._id}
                   routeGroup={routeGroup}
                 />

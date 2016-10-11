@@ -1,5 +1,8 @@
+@import '../../scss/grid';
+@import '../../scss/colors';
+
 .appBar {
-    > div {
-        display: inline-block;
-    }
+    background-color: $app-bar-color;
+    border-bottom: 1px solid black;
+    margin-bottom: 20px;
 }

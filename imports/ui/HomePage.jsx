@@ -5,9 +5,10 @@ import {createContainer} from 'meteor/react-meteor-data';
 
 import {Areas} from '../api/areas.js';
 
-import {AccountsUIWrapper, AppBar, AuthedContent, Page, Title} from './components/index.jsx';
+import {AccountsUIWrapper, AppBar, AuthedContent, Page, TabBar, Title} from './components/index.jsx';
 
 import styles from './HomePage.scss';
+
 
 const HomePage = props => {
     const areaLinks = props.areas.map(area => (
@@ -21,6 +22,10 @@ const HomePage = props => {
             <AppBar>
                 <Title title="SBP" />
                 <AccountsUIWrapper />
+                <TabBar
+                    pathname={props.location.pathname}
+                    tabs={[{link: '/', title: 'Areas'}, {link: '/stats', title: 'Stats'}]}
+                />
             </AppBar>
             <AuthedContent>
                 <ul>
@@ -34,6 +39,7 @@ const HomePage = props => {
 
 HomePage.propTypes = {
     areas: PropTypes.array.isRequired,
+    location: PropTypes.object,
 };
 
 export default createContainer(

@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import {Template} from 'meteor/templating';
 import {Blaze} from 'meteor/blaze';
 
+import styles from './AccountsUIWrapper.scss'
+
 export default class AccountsUIWrapper extends Component {
     componentDidMount() {
         // Use Meteor Blaze to render login buttons
@@ -15,6 +17,6 @@ export default class AccountsUIWrapper extends Component {
     }
     render() {
         // Just render a placeholder container that will be filled in
-        return <div><span ref="container" /></div>;
+        return <div className={styles.accountsUI}><span ref="container" /></div>;
     }
 }

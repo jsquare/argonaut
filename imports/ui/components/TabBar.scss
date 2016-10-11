@@ -1,0 +1,28 @@
+@import '../../scss/colors';
+
+
+$tab-color: black;
+
+.tabActive {
+    color: $tab-color;
+    border-bottom: 3px solid $tab-color;
+    box-sizing: border-box;
+}
+
+.tabInactive {
+    background: $app-bar-color;
+    color: $tab-color;
+}
+
+.tabLink {
+    padding: 5px;
+    margin: 0px 10px;
+    font-size: 20px;
+    text-decoration: none;
+    text-transform: uppercase;
+    display: inline-block;
+}
+
+.tabBar {
+    display: block;
+}

@@ -24,7 +24,11 @@ class AreaPage extends Component {
 
     render() {
         const {area, routeGroups} = this.props;
-        const editLink = area ? <IconLink to={`/areas/${area._id}/reset`} icon="create" alt="Reset routes" /> : '';
+        const editLink = area ? (
+            <div className={styles.resetButton}>
+                <IconLink to={`/areas/${area._id}/reset`} icon="create" alt="Reset routes" />
+            </div>
+        ) : '';
         return (
             <Page>
                 <AppBar>

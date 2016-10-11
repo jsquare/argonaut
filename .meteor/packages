@@ -24,3 +24,5 @@ accounts-ui@1.1.9
 react-meteor-data
 nathantreid:css-modules
 accounts-facebook
+service-configuration
+force-ssl

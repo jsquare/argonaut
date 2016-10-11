@@ -1,3 +1,17 @@
+$picSize: 50px;
+
 .accountsUI {
-    display: inline-block
+    display: inline-block;
+    float: right;
+    text-align: right;
+    padding: 15px;
+    span {
+        text-align: left;
+    }
+}
+
+.profilePic {
+    width: $picSize;
+    height: $picSize;
+    border-radius: calc(#{$picSize} * 0.5);
 }

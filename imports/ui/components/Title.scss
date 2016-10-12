@@ -2,7 +2,6 @@
 @import '../../scss/colors';
 
 .title {
-    @include text--title;
     font-size: 30px;
     display: inline-block;
     padding: 10px;
@@ -11,5 +10,9 @@
     overflow: hidden;
     margin-right: 0px;
     position: relative;
-    max-width: calc(100% - 350px);
+    max-width: calc(100% - 210px);
+
+    @media (min-device-width: 400px) {
+        @include text--title;
+    }
 }

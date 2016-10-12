@@ -35,7 +35,6 @@ class AreaPage extends Component {
                     <IconLink to="/" icon="arrow_back" />
                     <Title title={area ? area.name : 'loading...'} />
                     {editLink}
-                    <AccountsUIWrapper />
                 </AppBar>
                 <AuthedContent>
                     <div className="container">

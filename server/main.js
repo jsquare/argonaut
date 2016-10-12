@@ -2,39 +2,8 @@ import '../imports/api/areas.js';
 import '../imports/api/climbGroups.js';
 import '../imports/api/settings.js';
 import {Meteor} from 'meteor/meteor';
-import {Areas} from '../imports/api/areas';
-import {Settings, RouteGroups} from '../imports/api/settings';
+import {Settings} from '../imports/api/settings';
 
-const defaultRouteGroups = [
-    {
-        difficulty: 'V1-V3',
-        color: 'yellow',
-    },
-    {
-        difficulty: 'V2-V4',
-        color: 'green',
-    },
-    {
-        difficulty: 'V3-V5',
-        color: 'red',
-    },
-    {
-        difficulty: 'V4-V6',
-        color: 'blue',
-    },
-    {
-        difficulty: 'V5-V7',
-        color: 'orange',
-    },
-    {
-        difficulty: 'V6-V8',
-        color: 'purple',
-    },
-    {
-        difficulty: 'V7+',
-        color: 'black',
-    },
-];
 
 Accounts.onCreateUser(function(options, user) {
     if (options.profile) {
@@ -42,10 +11,6 @@ Accounts.onCreateUser(function(options, user) {
         user.profile = options.profile;
     }
     return user;
-});
-
-Meteor.startup(() => {
-    // Put startup stuff here
 });
 
 ServiceConfiguration.configurations.upsert(
@@ -59,3 +24,19 @@ ServiceConfiguration.configurations.upsert(
         },
     }
 );
+
+Meteor.startup(() => {
+    // Note: Assets exists even though it's not imported (https://docs.meteor.com/api/assets.html#Assets-getText)
+    const areas = JSON.parse(
+        Assets.getText('areas.json') // eslint-disable-line no-undef
+    ).areas
+
+    areas.forEach(area => {
+        Settings.upsert(
+            {
+                area: area._id,
+            },
+            {}
+        );
+    });
+});

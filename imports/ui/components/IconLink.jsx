@@ -5,7 +5,7 @@ import classnames from 'classnames';
 import styles from './IconLink.scss';
 
 const IconLink = props => (
-    <Link to={props.to} classNames={styles.iconLink}>
+    <Link to={props.to} className={styles.iconLink}>
         <i className={classnames('material-icons', styles.icon)}>{props.icon}</i>
     </Link>
 );

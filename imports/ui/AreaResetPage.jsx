@@ -2,9 +2,11 @@ import React, {PropTypes} from 'react';
 import {Meteor} from 'meteor/meteor';
 import {createContainer} from 'meteor/react-meteor-data';
 import {browserHistory} from 'react-router';
+import moment from 'moment';
 import _ from 'lodash';
 
 import {Areas} from '../api/areas.js';
+import {Settings} from '../api/settings.js';
 import {AccountsUIWrapper, AppBar, AreaEditTabBar, AuthedContent, IconLink, Page, Title} from './components/index.jsx';
 import {getAreaPageUrl, getAreaResetUrl} from './areaUrls';
 import RouteGroup from './RouteGroup.jsx';
@@ -57,6 +59,7 @@ const AreaResetPage = React.createClass({
     propTypes: {
         area: PropTypes.object,
         routeGroups: PropTypes.array,
+        lastSetDate: PropTypes.date,
     },
 
     getInitialState() {
@@ -119,7 +122,10 @@ const AreaResetPage = React.createClass({
         );
     },
     commitRouteGroups() {
-        const confirmed = window.confirm("If you hit 'OK', climbers will immediately see this new route set and the old route set will be archived.");
+        const lastSet = moment(this.props.lastSetDate).fromNow();
+        const confirmed = window.confirm(
+            `If you hit 'OK', climbers will immediately see this new route set and the previous route set (from ${lastSet}) will be archived.`
+        );
         if (confirmed) {
             Meteor.call('settings.insert', this.props.area._id, this.state.routeGroups);
             browserHistory.push(getAreaPageUrl(this.props.area._id));
@@ -130,8 +136,13 @@ const AreaResetPage = React.createClass({
 
 export default createContainer(props => {
     Meteor.subscribe('areas');
+    Meteor.subscribe('settings');
 
+    const area = Areas.findOne(props.params.areaId);
+    const setting = Settings.findOne({area: props.params.areaId}, {sort: {setDate: -1}});
+    const setDate = setting ? setting.setDate : null;
     return {
-        area: Areas.findOne(props.params.areaId),
+        area,
+        lastSetDate: setDate,
     };
 }, AreaResetPage);

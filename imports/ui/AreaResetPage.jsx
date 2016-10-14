@@ -59,7 +59,7 @@ const AreaResetPage = React.createClass({
     propTypes: {
         area: PropTypes.object,
         routeGroups: PropTypes.array,
-        lastSetDate: PropTypes.date,
+        lastSetDate: PropTypes.instanceOf(Date),
     },
 
     getInitialState() {

@@ -5,7 +5,7 @@ import {createContainer} from 'meteor/react-meteor-data';
 import {Areas} from '../api/areas.js';
 import {Settings, RouteGroups} from '../api/settings.js';
 
-import {AccountsUIWrapper, AppBar, AuthedContent, IconLink, Page, Title} from './components/index.jsx';
+import {AppBar, AuthedContent, IconLink, Page, Title} from './components/index.jsx';
 import PersonalRouteGroup from './PersonalRouteGroup.jsx';
 
 import styles from './AreaPage.scss';

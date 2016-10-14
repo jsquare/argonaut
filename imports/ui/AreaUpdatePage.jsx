@@ -1,11 +1,12 @@
 import React, {Component, PropTypes} from 'react';
 import {Meteor} from 'meteor/meteor';
 import {createContainer} from 'meteor/react-meteor-data';
+import {Link} from 'react-router';
 
 import {Areas} from '../api/areas.js';
 import {Settings, RouteGroups} from '../api/settings.js';
 import {AccountsUIWrapper, AppBar, AreaEditTabBar, AuthedContent, IconLink, Page, Title} from './components/index.jsx';
-import {getAreaPageUrl, getAreaUpdateUrl} from './areaUrls';
+import {getAreaPageUrl, getAreaResetUrl, getAreaUpdateUrl} from './areaUrls';
 import RouteGroup from './RouteGroup.jsx';
 import routeGroupStyles from './RouteGroup.scss';
 import styles from './AreaPage.scss';
@@ -51,6 +52,10 @@ class AreaUpdatePage extends Component {
                 {appBar}
                 <AuthedContent>
                     <div className="container">
+                        <span className="helpText">
+                            Use this page only to tweak route numbers that were set incorrectly.
+                            To enter in a whole new set of routes, use <Link to={getAreaResetUrl(areaId)}>Reset</Link>.
+                        </span>
                         <ul className={styles.ul}>
                             {routeGroups && this.renderRouteGroups(routeGroups)}
                         </ul>

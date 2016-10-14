@@ -1,8 +1,10 @@
 import {Meteor} from 'meteor/meteor';
 import {Mongo} from 'meteor/mongo';
 import {check} from 'meteor/check';
+import {ClimbGroup} from './schemas';
 
 export const ClimbGroups = new Mongo.Collection('climbGroups');
+ClimbGroups.attachSchema(ClimbGroup);
 
 if (Meteor.isServer) {
     // This code only runs on the server

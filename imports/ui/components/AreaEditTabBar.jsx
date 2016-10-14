@@ -21,8 +21,8 @@ const AreaEditTabBar = ({areaId, pathName}) => (
 
 
 AreaEditTabBar.propTypes = {
-    areaId: PropTypes.String,
-    pathName: PropTypes.String,
+    areaId: PropTypes.string.isRequired,
+    pathName: PropTypes.string.isRequired,
 };
 
 

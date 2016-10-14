@@ -1,9 +1,13 @@
 import {Meteor} from 'meteor/meteor';
 import {Mongo} from 'meteor/mongo';
 import {check} from 'meteor/check';
+import {Setting, RouteGroup} from './schemas.js';
 
 export const Settings = new Mongo.Collection('settings');
+Settings.attachSchema(Setting);
 export const RouteGroups = new Mongo.Collection('routeGroups');
+RouteGroups.attachSchema(RouteGroup);
+
 
 if (Meteor.isServer) {
     // This code only runs on the server

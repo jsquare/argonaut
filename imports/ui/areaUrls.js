@@ -1,6 +1,6 @@
 
-export const getAreaPageUrl = (areaId) => `/areas/${areaId}`;
+export const getAreaPageUrl = areaSlug => `/areas/${areaSlug}`;
 
-export const getAreaResetUrl = (areaId) => `/areas/${areaId}/reset`;
+export const getAreaResetUrl = areaSlug => `/areas/${areaSlug}/reset`;
 
-export const getAreaUpdateUrl = (areaId) => `/areas/${areaId}/update`;
+export const getAreaUpdateUrl = areaSlug => `/areas/${areaSlug}/update`;

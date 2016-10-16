@@ -125,6 +125,7 @@ const AreaResetPage = React.createClass({
         const lastSet = moment(this.props.lastSetDate).fromNow();
         const lastSetInfo = (
             this.props.lastSetDate ?
+            ` and the previous route set (from ${lastSet}) will be archived`
             : '' // If there's no lastSetDate, it hasn't been set so nothing will be archived!
         );
         const confirmed = window.confirm(

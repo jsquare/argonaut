@@ -123,8 +123,12 @@ const AreaResetPage = React.createClass({
     },
     commitRouteGroups() {
         const lastSet = moment(this.props.lastSetDate).fromNow();
+        const lastSetInfo = (
+            this.props.lastSetDate ?
+            : '' // If there's no lastSetDate, it hasn't been set so nothing will be archived!
+        );
         const confirmed = window.confirm(
-            `If you hit 'OK', climbers will immediately see this new route set and the previous route set (from ${lastSet}) will be archived.`
+            `If you hit 'OK', all climbers will immediately see this new route set${lastSetInfo}.`
         );
         if (confirmed) {
             Meteor.call('settings.insert', this.props.area._id, this.state.routeGroups);

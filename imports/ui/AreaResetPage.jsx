@@ -99,7 +99,6 @@ const AreaResetPage = React.createClass({
                 <AppBar>
                     <IconLink to={getAreaPageUrl(areaId)} icon="cancel" />
                     <Title title={`${area.name} - Reset`} />
-                    <AccountsUIWrapper />
                     <AreaEditTabBar
                         areaId={areaId}
                         pathName={getAreaResetUrl(areaId)}

@@ -7,9 +7,9 @@ import {ServiceConfiguration} from 'meteor/service-configuration';
 import {Areas} from '../imports/api/areas';
 
 
-Accounts.onCreateUser(function(options, user) {
+Accounts.onCreateUser((options, user) => {
     if (options.profile) {
-        options.profile.picture = "http://graph.facebook.com/" + user.services.facebook.id + "/picture/?type=large";
+        options.profile.picture = `https://graph.facebook.com/${user.services.facebook.id}/picture/?type=large`;
         user.profile = options.profile;
     }
     return user;

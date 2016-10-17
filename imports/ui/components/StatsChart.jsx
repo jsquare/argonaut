@@ -21,15 +21,21 @@ const StatsChart = props => {
         }
     ));
 
-    const remainingBars = props.data.map(difficultyGroup => (
-        {
-            x: difficultyGroup.difficulty,
-            y: difficultyGroup.routesCount - difficultyGroup.climbedCount,
-            fill: colorMap[difficultyGroup.color],
+    const remainingBars = props.data.map(difficultyGroup => {
+        const {climbedCount, routesCount, color, difficulty} = difficultyGroup;
+        const label = (
+            (climbedCount === routesCount) ?
+            '⭐' :
+            `${Math.round(climbedCount / routesCount * 100)}%`
+        );
+        return {
+            x: difficulty,
+            y: routesCount - climbedCount,
+            fill: colorMap[color],
             opacity: 0.5,
-            label: `${Math.round(difficultyGroup.climbedCount / difficultyGroup.routesCount * 100)}%`,
-        }
-    ));
+            label,
+        };
+    });
 
     const difficultyTicks = props.data.map(difficultyGroup => difficultyGroup.difficulty);
 

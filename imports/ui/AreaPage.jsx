@@ -7,6 +7,7 @@ import {Settings, RouteGroups} from '../api/settings.js';
 
 import {AppBar, AuthedContent, IconLink, Page, Title} from './components/index.jsx';
 import PersonalRouteGroup from './PersonalRouteGroup.jsx';
+import getCurrentSetting from './getCurrentSetting.js';
 
 import styles from './AreaPage.scss';
 
@@ -59,7 +60,7 @@ export default createContainer(props => {
     Meteor.subscribe('settings');
     Meteor.subscribe('routeGroups');
 
-    const setting = Settings.findOne({area: props.params.areaId}, {sort: {setDate: -1}});
+    const setting = getCurrentSetting(props.params.areaId);
     let routeGroups = [];
     if (setting) {
         routeGroups = RouteGroups.find({setting: setting._id}).fetch();

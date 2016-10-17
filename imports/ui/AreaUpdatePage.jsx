@@ -39,7 +39,6 @@ class AreaUpdatePage extends Component {
                 <AppBar>
                     <IconLink to={getAreaPageUrl(areaId)} icon="arrow_back" />
                     <Title title={`${area.name} - Update`} />
-                    <AccountsUIWrapper />
                     <AreaEditTabBar
                         areaId={areaId}
                         pathName={getAreaUpdateUrl(areaId)}

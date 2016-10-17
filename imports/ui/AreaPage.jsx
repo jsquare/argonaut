@@ -1,10 +1,11 @@
 import React, {Component, PropTypes} from 'react';
 import {Meteor} from 'meteor/meteor';
 import {createContainer} from 'meteor/react-meteor-data';
+import {Link} from 'react-router';
 
 import {Areas} from '../api/areas.js';
 import {Settings, RouteGroups} from '../api/settings.js';
-
+import {getAreaResetUrl} from './areaUrls';
 import {AppBar, AuthedContent, IconLink, Page, Title} from './components/index.jsx';
 import PersonalRouteGroup from './PersonalRouteGroup.jsx';
 import getCurrentSetting from './getCurrentSetting.js';
@@ -30,6 +31,22 @@ class AreaPage extends Component {
                 <IconLink to={`/areas/${area._id}/reset`} icon="create" alt="Reset routes" />
             </div>
         ) : '';
+        const noSettingHelpText = (
+            (area && ! routeGroups.length) ? (
+                <span className="helpText">
+                    Route counts haven't been entered yet for this area.
+                    You could be the first to <Link to={getAreaResetUrl(area._id)}>set</Link> them!
+                </span>
+            ) : ''
+        );
+        const mainContent = (
+            routeGroups.length ?
+            (
+                <ul className={styles.ul}>
+                    {this.renderRouteGroups(routeGroups)}
+                </ul>
+            ) : ''
+        );
         return (
             <Page>
                 <AppBar>
@@ -39,9 +56,8 @@ class AreaPage extends Component {
                 </AppBar>
                 <AuthedContent>
                     <div className="container">
-                        <ul className={styles.ul}>
-                            {routeGroups && this.renderRouteGroups(routeGroups)}
-                        </ul>
+                        {noSettingHelpText}
+                        {mainContent}
                     </div>
                 </AuthedContent>
             </Page>

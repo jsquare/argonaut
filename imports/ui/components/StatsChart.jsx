@@ -13,27 +13,29 @@ const colorMap = {
 };
 
 const StatsChart = props => {
-    const climbedBars = props.data.map(difficultyGroup => (
-        {
-            x: difficultyGroup.difficulty,
-            y: difficultyGroup.climbedCount,
-            fill: colorMap[difficultyGroup.color],
-        }
-    ));
-
-    const remainingBars = props.data.map(difficultyGroup => {
+    const climbedBars = props.data.map(difficultyGroup => {
         const {climbedCount, routesCount, color, difficulty} = difficultyGroup;
         const label = (
             (climbedCount === routesCount) ?
             '⭐' :
             `${Math.round(climbedCount / routesCount * 100)}%`
         );
+
+        return {
+            x: difficulty,
+            y: climbedCount,
+            fill: colorMap[color],
+            label,
+        };
+    });
+
+    const remainingBars = props.data.map(difficultyGroup => {
+        const {climbedCount, routesCount, color, difficulty} = difficultyGroup;
         return {
             x: difficulty,
             y: routesCount - climbedCount,
             fill: colorMap[color],
             opacity: 0.5,
-            label,
         };
     });
 
@@ -64,7 +66,7 @@ const StatsChart = props => {
             <VictoryStack
               style={{
                   data: {width: 30},
-                  labels: {fontSize: 16},
+                  labels: {fontSize: 14},
               }}
             >
               <VictoryBar data={climbedBars} />
